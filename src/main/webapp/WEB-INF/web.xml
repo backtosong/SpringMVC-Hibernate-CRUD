@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	id="WebApp_ID" version="2.5">
+	<display-name>SpringMvcHibernate</display-name>
+		        
+	<listener>        
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>   
+	<context-param>         
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/DispatcherServlet-servlet.xml</param-value>
+	</context-param>
+	<!--   
+	激活Tomcat的defaultServlet来处理静态文件
+	Tomcat, Jetty, JBoss, and GlassFish 自带的默认Servlet的名字  "default"
+	Google App Engine 自带的 默认Servlet的名字  "_ah_default"
+	Resin 自带的 默认Servlet的名字  "resin-file"
+	WebLogic 自带的 默认Servlet的名字   "FileServlet"
+	WebSphere  自带的 默认Servlet的名字  "SimpleFileServlet"
+	--> 
+	<servlet-mapping>              
+    	<servlet-name>default</servlet-name>    
+    	<url-pattern>*.jpg</url-pattern>       
+	</servlet-mapping>      
+	<servlet-mapping>         
+	    <servlet-name>default</servlet-name>          
+	    <url-pattern>*.js</url-pattern>      
+	</servlet-mapping>      
+	<servlet-mapping>          
+	    <servlet-name>default</servlet-name>         
+	    <url-pattern>*.css</url-pattern>        
+	</servlet-mapping>     
+	  
+	<servlet> 
+		<servlet-name>DispatcherServlet</servlet-name>    
+		<servlet-class>      
+			org.springframework.web.servlet.DispatcherServlet
+		</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>  
+		<servlet-name>DispatcherServlet</servlet-name>
+		<url-pattern>/</url-pattern> 
+	</servlet-mapping>
+</web-app>
